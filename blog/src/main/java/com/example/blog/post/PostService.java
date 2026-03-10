@@ -28,13 +28,13 @@ public class PostService {
     }
 
     public PostDto getPostById(Long id){ // 글 상세 조회
-        PostEntity post = postRepository.findById(id).get();
+        PostEntity post = postRepository.getById(id);
         return PostDto.from(post);
     }
 
     @Transactional
     public boolean updatePost(Long id, PostDto post){ // 글 수정
-        PostEntity prevPost = postRepository.findById(id).get();
+        PostEntity prevPost = postRepository.getById(id);
         prevPost.update(post.getTitle(), post.getContent());
         return true;
     }
