@@ -3,12 +3,12 @@
 ## 기술 스택
 ```Spring Boot```, ```JPA```, ```H2 Database```, ```Swagger```, ```thymeleaf```
 ## API 목록
-1. [POST] 게시글 작성 (/post)
+1. [POST] 게시글 작성 (/api/posts)
 2. [GET] 게시글 조회
-   - 목록 전체 조회 (/post)
-   - 게시글 상세 조회 (/post/{id})
-4. [PUT] 게시글 수정 (/post/{id})
-5. [DELETE] 게시글 삭제 (/post/{id})
+   - 목록 전체 조회 (/api/posts)
+   - 게시글 상세 조회 (/api/posts/{id})
+4. [PUT] 게시글 수정 (/api/posts/{id})
+5. [DELETE] 게시글 삭제 (/api/posts/{id})
 ## 프로젝트 구조
 ```
 post
