@@ -16,21 +16,18 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
+@RequestMapping("/api/posts")
 @Slf4j
 public class PostController {
     @Autowired
     private PostService postService;
-    
-    @GetMapping("/")
-    public String getHelloWorld() {
-        return "Hello World!";
-    }
 
     @Operation(summary = "게시글 상세 조회", description = "아이디로 게시글을 조회합니다.")
-    @GetMapping("/post/{id}")
+    @GetMapping("/{id}")
     public PostResponse getPostById(@PathVariable("id") Long id) {
         PostResponse response = null;
         try {
@@ -43,7 +40,7 @@ public class PostController {
     }
     
     @Operation(summary = "게시글 목록 조회", description = "페이징을 사용하여 게시글 목록을 조회합니다.")
-    @GetMapping("/post")
+    @GetMapping
     public PostResponse getPosts(Pageable pageable) {
         PostResponse response = null;
         try {
@@ -56,7 +53,7 @@ public class PostController {
     }
 
     @Operation(summary = "게시글 작성", description = "새로운 게시글을 작성합니다.")
-    @PostMapping("/post")
+    @PostMapping
     public PostResponse registerPost(@RequestBody PostDto post) {
         PostResponse response = null;
         try {
@@ -69,8 +66,8 @@ public class PostController {
     }
 
     @Operation(summary = "게시글 수정", description = "기존 게시글을 수정합니다.")
-    @PutMapping("/post/{id}")
-    public PostResponse putMethodName(@PathVariable("id") Long id, @RequestBody PostDto post) {
+    @PutMapping("/{id}")
+    public PostResponse putPost(@PathVariable("id") Long id, @RequestBody PostDto post) {
         PostResponse response = null;
         try {
             boolean status = postService.updatePost(id, post);
@@ -81,8 +78,8 @@ public class PostController {
         return response;
     }
 
-    @DeleteMapping("/post/{id}")
-    public PostResponse putMethodName(@PathVariable("id") Long id) {
+    @DeleteMapping("/{id}")
+    public PostResponse deletePost(@PathVariable("id") Long id) {
         PostResponse response = null;
         try {
             boolean status = postService.deletePost(id);
